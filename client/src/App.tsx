@@ -1,13 +1,17 @@
-import { useMemo, useState } from "react"
+import { useMemo } from "react"
 import { ThemeProvider, createTheme } from "@mui/material/styles"
 import { themeSettings } from "./theme"
-import { Box, CssBaseline } from "@mui/material"
+import { Box, CssBaseline, Fab } from "@mui/material"
 // import { useTheme } from "@mui/material"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import FrontPage from "./scenes/frontPage"
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import ScrollTop from "./components/scroll"
 import Navbar from "./components/navbar"
 
-function App() {
+type Props = {}
+
+function App(props: Props) {
   const theme = useMemo(() => createTheme(themeSettings), [])
   // const { palette } = useTheme()
 
@@ -23,6 +27,11 @@ function App() {
                 <Route path="/" element={<FrontPage />} />
               </Routes>
             </Box>
+            <ScrollTop {...props}>
+              <Fab size="small" aria-label="scroll back to top">
+                <KeyboardArrowUpIcon />
+              </Fab>
+            </ScrollTop>
           </ThemeProvider>
         </BrowserRouter>
       </div>

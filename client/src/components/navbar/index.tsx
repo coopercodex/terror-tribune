@@ -4,7 +4,6 @@ import {
   Box,
   Button,
   Drawer,
-  Fab,
   IconButton,
   List,
   ListItem,
@@ -17,8 +16,6 @@ import MenuIcon from "@mui/icons-material/Menu"
 import { useState } from "react"
 import { useTheme } from "@mui/material"
 import Logo from "../../assets/titlelogo.png"
-import ScrollTop from "../scroll"
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
 interface Props {
   window?: () => Window
@@ -28,7 +25,7 @@ const Navbar = (props: Props) => {
   const { palette } = useTheme()
   const drawerWidth = 350
   const navItems = ["Home", "Movies", "Tv", "Books"]
-  const { children, window } = props
+  const { window } = props
   const [mobileOpen, setMobileOpen] = useState(false)
 
   const handleDrawerToggle = () => {
@@ -37,7 +34,7 @@ const Navbar = (props: Props) => {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Typography id="back-to-top-anchor">
+      <Typography>
         <img
           src={Logo}
           height={130}
@@ -61,7 +58,8 @@ const Navbar = (props: Props) => {
     window !== undefined ? () => window().document.body : undefined
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <>
+    <Box sx={{ display: "flex" }} id="back-to-top-anchor">
       <AppBar component="nav" sx={{ backgroundColor: palette.grey[900] }}>
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -141,12 +139,8 @@ const Navbar = (props: Props) => {
           {drawer}
         </Drawer>
       </Box>
-      <ScrollTop {...props}>
-        <Fab size="small" aria-label="scroll back to top">
-          <KeyboardArrowUpIcon />
-        </Fab>
-      </ScrollTop>
     </Box>
+    </>
   )
 }
 
