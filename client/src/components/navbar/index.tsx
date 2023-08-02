@@ -16,6 +16,7 @@ import MenuIcon from "@mui/icons-material/Menu"
 import { useState } from "react"
 import { useTheme } from "@mui/material"
 import Logo from "../../assets/titlelogo.png"
+import CloseIcon from '@mui/icons-material/Close';
 
 interface Props {
   window?: () => Window
@@ -34,12 +35,16 @@ const Navbar = (props: Props) => {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+      <Typography sx={{position: 'absolute', right: 0, padding: '15px'}}>
+      <CloseIcon sx={{ cursor: "pointer", fontSize: 20, transition: "transform 0.2s ease-in-out",
+    "&:hover": { transform: "scale3d(1.05, 1.06, 2)", color: 'red' } }}/>
+    </Typography>
       <Typography>
         <img
           src={Logo}
-          height={130}
-          width={140}
-          style={{ objectFit: "contain", marginRight: -15 }}
+          height={140}
+          width={150}
+          style={{ objectFit: "contain", marginRight: -22 }}
         />
       </Typography>
       <List>
@@ -59,7 +64,7 @@ const Navbar = (props: Props) => {
 
   return (
     <>
-    <Box sx={{ display: "flex" }} id="back-to-top-anchor">
+    <Box sx={{ display: "flex"}} id="back-to-top-anchor">
       <AppBar component="nav" sx={{ backgroundColor: palette.grey[900] }}>
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>

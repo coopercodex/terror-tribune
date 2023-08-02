@@ -1,11 +1,14 @@
 import { Box } from '@mui/material'
-import React from 'react'
+import Featured from '../../components/featured'
+// import React from 'react'
 
 type Props = {}
 
 const FrontPage = (props: Props) => {
   return (
-    <Box>This is the frontPage</Box>
+    <Box  sx={{height: '100%', backgroundColor: 'white', marginTop: 15}}>
+      <Featured />
+    </Box>
   )
 }
 
