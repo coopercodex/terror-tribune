@@ -12,4 +12,6 @@ body,
   text-rendering: optimizeLegibility;
   -webkit-tap-highlight-color: transparent;
   background-color: rgb(10, 10, 10);
+  color: rgb(247, 247, 247);
+  scroll-behavior: smooth;
 }

@@ -21,7 +21,7 @@ function App(props: Props) {
         <BrowserRouter>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Box width="100%" height="100%" padding="1rem 2rem 4rem 2rem">
+            <Box width="100%" height="100%" padding="2rem 3rem 4rem 3rem">
               <Navbar />
               <Routes>
                 <Route path="/" element={<FrontPage />} />

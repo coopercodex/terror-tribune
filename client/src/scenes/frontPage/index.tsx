@@ -6,7 +6,7 @@ type Props = {}
 
 const FrontPage = (props: Props) => {
   return (
-    <Box  sx={{height: '100%', backgroundColor: 'white', marginTop: 15}}>
+    <Box  sx={{height: '100%',width: '100%', marginTop: 15}}>
       <Featured />
     </Box>
   )
