@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+@import "react-alice-carousel/lib/alice-carousel.css";
 
 html,
 body,
@@ -15,3 +16,26 @@ body,
   color: rgb(247, 247, 247);
   scroll-behavior: smooth;
 }
+
+.alice-carousel__next-btn-item {
+  display: flex;
+  position: absolute;
+  font-size: 4rem;
+  right: 0;
+  top: 10rem;
+  color: rgb(220, 224, 220);
+  margin: auto;
+}
+
+.alice-carousel__prev-btn-item {
+  position: absolute;
+  font-size: 4rem;
+  left: 0;
+  top: 10rem;
+  color: rgb(220, 224, 220);
+}
+
+.alice-carousel__prev-btn-item:hover, .alice-carousel__next-btn-item:hover {
+  color:  rgb(179, 180, 179);
+}
+

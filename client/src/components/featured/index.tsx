@@ -3,10 +3,10 @@ import { Box, Typography } from "@mui/material"
 import { useEffect, useState } from "react"
 import requests from "../../api/requests"
 import { useTheme } from "@mui/material"
-
+import AliceCarousel from "react-alice-carousel"
+import "react-alice-carousel/lib/alice-carousel.css"
 
 type Props = {}
-
 
 const Featured = (props: Props) => {
   const { palette } = useTheme()
@@ -16,11 +16,7 @@ const Featured = (props: Props) => {
   const getData = () => {
     fetch(requests.horrorMovies)
       .then((res) => res.json())
-      .then((data) =>
-        setMovies(
-          data.results[Math.floor(Math.random() * data.results.length - 1)]
-        )
-      )
+      .then((data) => setMovies(data.results))
       .catch((err) => console.log(err))
   }
   console.log(movies)
@@ -29,25 +25,56 @@ const Featured = (props: Props) => {
     getData()
   }, [])
 
-  return (
+ 
+  // const handleDragStart = (e) => e.preventDefault()
+  const items = movies?.map((i) => (
     <Box
-      sx={{ display: 'flex', justifyContent: 'flex-end', color: "white", background: `url(${baseUrl}${movies?.backdrop_path || movies?.poster_path})`, objectFit: "cover", backgroundPosition: 'center', minHeight: "75%"}}
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        color: "white",
+        background: `url(${baseUrl}${i?.backdrop_path || i?.poster_path})`,
+        objectFit: "cover",
+        backgroundPosition: "center",
+        minHeight: "75%",
+      }}
     >
-      <Box sx={{ display: "flex", flexDirection: "column", alignItems: 'center', justifyContent: 'center', gap: '1rem'}}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "1rem",
+        }}
+      >
         <img
           className="justin-picture"
           height={300}
           width={400}
           style={{ objectFit: "contain" }}
-          src={`${baseUrl}${ movies?.poster_path || movies?.backdrop_path}`}
-          alt={movies?.name}
-          />
-        <Typography variant="h1" display={'flex'} justifyContent={'center'}>
-          {movies?.title || movies?.name || movies?.original_name}
+          src={`${baseUrl}${i?.poster_path || i?.backdrop_path}`}
+          alt={i?.name}
+        />
+        <Typography variant="h1" display={"flex"} justifyContent={"center"}>
+          {i?.title || i?.name || i?.original_name}
         </Typography>
-          <Box sx={{maxWidth:'75%', fontSize: 20}}>{movies.overview}</Box>
+        <Box sx={{ maxWidth: "75%", fontSize: 20 }}>{i.overview}</Box>
       </Box>
     </Box>
+  ))
+
+  return (
+    <AliceCarousel
+      items={items}
+      animationType="fadeout"
+      animationDuration={800}
+      autoPlayStrategy="none"
+      infinite
+      mouseTracking
+      disableDotsControls
+      touchTracking={true}
+    />
   )
 }
 
